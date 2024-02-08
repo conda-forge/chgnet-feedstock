@@ -1,5 +1,5 @@
 {% set name = "chgnet" %}
-{% set version = "0.3.3" %}
+{% set version = "0.3.4" %}
 
 package:
   name: {{ name|lower }}
@@ -7,13 +7,13 @@ package:
 
 source:
   url: https://github.com/CederGroupHub/chgnet/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 213c9d590c1fe59356aa9ff80b91e910566c351810e3cb2a83fc65382ba3dcbb
+  sha256: 4b578a18d5ae7c73960e0940efc64fa33d354adf344bf43794494ef3ac9d9346
 
 build:
   skip: true  # [py<39]
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   build:
