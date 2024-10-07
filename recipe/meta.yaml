@@ -25,6 +25,7 @@ requirements:
     - setuptools >=65.0
     - wheel
     - pip
+    - numpy
   run:
     - typing-extensions >=4.12
     - python
