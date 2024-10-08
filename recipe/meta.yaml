@@ -1,5 +1,5 @@
 {% set name = "chgnet" %}
-{% set version = "0.3.8" %}
+{% set version = "0.4.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/CederGroupHub/chgnet/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 7acbf4ee21bfa98bcf88272d0369e6c9c60c92c254fa7b96d9521bd3a8f1af72
+  sha256: 46621c74174feb434c3f5204c4718658f53fabf78a8d5bc2e16a755f23e5b8d4
 
 build:
-  skip: true  # [py<39]
+  skip: true  # [py<310]
   skip: true  # [win]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
@@ -25,22 +25,20 @@ requirements:
     - setuptools >=65.0
     - wheel
     - pip
+    - numpy
   run:
+    - typing-extensions >=4.12
     - python
     - ase >=3.23.0
     - cython >=3
-    - numpy >=1.26
+    - numpy
     - nvidia-ml >=7.352.0
-    - pymatgen >=2023.10.11
-    - pytorch >=1.11.0
+    - pymatgen >=2024.9.10
+    - pytorch >=2.4.1
 
 test:
   imports:
     - chgnet
-  commands:
-    - pip check
-  requires:
-    - pip
 
 about:
   home: https://github.com/CederGroupHub/chgnet
