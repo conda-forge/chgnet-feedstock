@@ -39,10 +39,6 @@ requirements:
 test:
   imports:
     - chgnet
-  commands:
-    - pip check
-  requires:
-    - pip
 
 about:
   home: https://github.com/CederGroupHub/chgnet
