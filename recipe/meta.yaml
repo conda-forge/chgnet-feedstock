@@ -1,5 +1,5 @@
 {% set name = "chgnet" %}
-{% set version = "0.4.1" %}
+{% set version = "0.4.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/CederGroupHub/chgnet/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 6a5656b93383988a338bfbae0270f97b69dce2704785efa942b0243c3abc847f
+  sha256: 753f32c1e30044be85e9c7a126d30f231520c5fdc7a558bf48c369392c247681
 
 build:
   skip: true  # [py<310]
@@ -27,6 +27,7 @@ requirements:
     - pip
     - numpy
   run:
+    - typing_extensions >=4.12
     - typing-extensions >=4.12
     - python
     - ase >=3.23.0
