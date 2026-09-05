@@ -1,0 +1,65 @@
+schema_version: 1
+
+context:
+  name: chgnet
+  version: "0.4.2"
+
+package:
+  name: ${{ name|lower }}
+  version: ${{ version }}
+
+source:
+  url: https://github.com/CederGroupHub/chgnet/archive/refs/tags/v${{ version }}.tar.gz
+  sha256: 753f32c1e30044be85e9c7a126d30f231520c5fdc7a558bf48c369392c247681
+
+build:
+  number: 3
+  skip: match(python, "<3.10") or win
+  script: ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  build:
+    - if: build_platform != target_platform
+      then: python
+    - if: build_platform != target_platform
+      then: cross-python_${{ target_platform }}
+    - if: build_platform != target_platform
+      then: cython
+    - if: build_platform != target_platform
+      then: numpy
+    - ${{ compiler('c') }}
+    - ${{ stdlib("c") }}
+  host:
+    - python
+    - cython
+    - setuptools >=65.0
+    - wheel
+    - pip
+    - numpy
+  run:
+    - typing_extensions >=4.12
+    - typing-extensions >=4.12
+    - python
+    - ase >=3.23.0
+    - cython >=3
+    - numpy
+    - nvidia-ml >=7.352.0
+    - pymatgen >=2024.9.10
+    - pytorch >=2.4.1
+
+tests:
+  - python:
+      imports:
+        - chgnet
+      pip_check: false
+
+about:
+  summary: Pretrained Universal Neural Network Potential for Charge-informed Atomistic Modeling
+  license: BSD-3-Clause
+  license_file: LICENSE
+  homepage: https://github.com/CederGroupHub/chgnet
+  repository: https://github.com/CederGroupHub/chgnet
+
+extra:
+  recipe-maintainers:
+    - jan-janssen
